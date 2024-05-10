@@ -1,0 +1,44 @@
+1)Score of a String
+
+  class Solution {
+    public int scoreOfString(String s) {
+        int c=0;
+        for(int i=1; i<s.length(); i++){
+            int a=s.charAt(i-1);
+            int b=s.charAt(i);
+            c+=Math.abs(a-b);
+        }
+        return c;
+    }
+}
+
+2)valid parentheses
+
+  class Solution {
+    public boolean isValid(String str) {
+        Stack<Character> s=new Stack<Character>();
+        if(str.length()==1) return false;
+        for(int i=0; i<str.length(); i++){
+            char x=str.charAt(i);
+            if(x=='(' || x=='{' || x=='['){
+                s.push(x);
+            }
+            else{
+                if(s.isEmpty()==true){
+                    return false;
+                }
+                else if(isbalance(s.peek(),x)==false){
+                    return false;
+                }
+                else{
+                    s.pop();
+                }
+            }
+        }
+        return s.isEmpty();
+        
+    }
+    static boolean isbalance(char a, char b){
+        return ((a=='(' && b==')')||(a=='{' && b=='}') || (a=='[' && b==']'));
+    }
+}
